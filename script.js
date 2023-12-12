@@ -50,8 +50,8 @@ const btn_calcola_click_eventHandeler = function () {
     const netto = calcolaNettoDaImponibile(imponibile);
 
     //show result
-    document.getElementById("stipendio_netto").innerHTML = `stipendio netto (no tredicesiama) ${netto / 12} € al mese\n
-    stipendio netto (con tredicesima) ${netto / 13} € all'anno`
+    document.getElementById("stipendio_netto_no_tred").innerHTML = `stipendio netto (no tredicesiama) :${netto / 12} € al meese`
+    document.getElementById("stipendio_netto_tred").innerHTML = `stipendio netto (con tredicesima) :$ {netto / 13} € al meese`
 
 };
 
