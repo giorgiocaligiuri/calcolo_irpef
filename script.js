@@ -49,6 +49,10 @@ const btn_calcola_click_eventHandeler = function () {
     //calculate tax
     const netto = calcolaNettoDaImponibile(imponibile);
 
+    const stipendio_netto_no_tred = Math.round(netto / 12 * 100) / 100;
+    const stipendio_netto_tred = Math.round(netto / 13 * 100) / 100;
+    
+
     //show result
     document.getElementById("stipendio_netto_no_tred").innerHTML = `stipendio netto (no tredicesiama) :${netto / 12} € al meese`
     document.getElementById("stipendio_netto_tred").innerHTML = `stipendio netto (con tredicesima) : ${netto / 13} € al meese`
