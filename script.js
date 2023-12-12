@@ -18,10 +18,10 @@ const resetTable = function () {
     table.innerHTML = "";
     const header = table.createTHead();
     const row = header.insertRow();
-    row.insertCell().innerHTML = "scaglione";
-    row.insertCell().innerHTML = "aliquota";
-    row.insertCell().innerHTML = "imponibile_scaglione";
-    row.insertCell().innerHTML = "tassa_scaglione";
+    row.insertCell().innerHTML = "scaglione [€]";
+    row.insertCell().innerHTML = "aliquota [%]";
+    row.insertCell().innerHTML = "imponibile_scaglione [€]";
+    row.insertCell().innerHTML = "tassa_scaglione [€]";
 }
 
 const insertTableRow = function (scaglione, aliquota, imponibile_scaglione, tassa_scaglione) {
@@ -94,8 +94,8 @@ const txt_imponebile_textChanged_eventHandeler = function () {
     
 
     //show result
-    document.getElementById("stipendio_netto_no_tred").innerHTML = `stipendio netto (no tredicesiama) : ${stipendio_netto_no_tred} € al meese`
-    document.getElementById("stipendio_netto_tred").innerHTML = `stipendio netto (con tredicesima) : ${stipendio_netto_tred} € al meese`
+    document.getElementById("stipendio_netto_no_tred").innerHTML = `stipendio netto (no tredicesima) : ${stipendio_netto_no_tred} € al mese`
+    document.getElementById("stipendio_netto_tred").innerHTML = `stipendio netto (con tredicesima) : ${stipendio_netto_tred} € al mese`
 
 };
 
