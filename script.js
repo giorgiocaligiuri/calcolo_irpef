@@ -18,10 +18,10 @@ const resetTable = function () {
     table.innerHTML = "";
     const header = table.createTHead();
     const row = header.insertRow();
-    row.insertCell().innerHTML = "scaglione [€]";
-    row.insertCell().innerHTML = "aliquota [%]";
-    row.insertCell().innerHTML = "imponibile_scaglione [€]";
-    row.insertCell().innerHTML = "tassa_scaglione [€]";
+    row.insertCell().innerHTML = "scaglione €";
+    row.insertCell().innerHTML = "aliquota %";
+    row.insertCell().innerHTML = "imponibile scaglione €";
+    row.insertCell().innerHTML = "tassa scaglione €";
 }
 
 const insertTableRow = function (scaglione, aliquota, imponibile_scaglione, tassa_scaglione) {
