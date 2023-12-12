@@ -36,6 +36,7 @@ const calcolaNettoDaImponibile = function (imponibile) {
 const btn_calcola_click_eventHandeler = function () {
     //get value from input with id "txt_imponibile"
     const input_text = document.getElementById("txt_imponibile").value;
+    alert("ciao");
 
     //validate input
     if (!validateNumber(input_text)) {
