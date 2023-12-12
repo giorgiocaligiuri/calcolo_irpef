@@ -14,8 +14,8 @@ const validateNumber = function (number) {
 }
 
 const calcolaNettoDaImponibile = function (imponibile) {
-    const scaglioni = [ 15000, 28000, 55000, 75000, 100000 ];
-    const aliquote = [ 23, 27, 38, 41, 43 ];
+    const scaglioni = [ 15000, 28000, 50000];
+    const aliquote = [ 23, 25, 35, 43];
     
     let totaleTasse = 0;
     let imponibile_rimanente = imponibile;
