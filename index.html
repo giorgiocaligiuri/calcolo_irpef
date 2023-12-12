@@ -4,17 +4,22 @@
   <meta charset="UTF-8">
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   <title>Tax Computing Website</title>
+  <link rel="stylesheet" href="style.css">
 </head>
 <body> 
-  <h1>Calcola stipendio netto a partire dall'imponibile previdenziale</h1>
-  <p>Inserisci imponibile previdenziale annuale</p>
-  
-  <input type="text" name="imponibile" id="txt_imponibile" placeholder="Imponibile previdenziale annuale">
-  <button type="button" id="btn_calcola">Calcola stipendio netto</button>
+  <h1>Calcolatore stipendio netto imponibile previdenziale</h1>
+
+  <span>Inserire imponibile previdenziale annuale : </span>  
+  <input type="text" id="txt_imponibile" placeholder="Imponibile previdenziale annuale">
+  <span id="error" class="hidden">Inserire un numero </span>  
   
   <p id="stipendio_netto_no_tred"></p>
-  </br>
   <p id="stipendio_netto_tred"></p>
+  <p id="output"></p>
+
+  <table id="table">
+  </table>
+
 </body>
 <script src="script.js"></script>
 </html>

@@ -1,0 +1,49 @@
+body {
+  background-color: #f2f2f2;
+  font-family: 'Lato', sans-serif;
+  font-size: 24px;
+  line-height: 1;
+  margin-left: 10%;
+  margin-right: 10%;
+  padding: 0;
+}
+
+table {
+  font-family: arial, sans-serif;
+  border-collapse: collapse;
+  margin-left: auto;
+  margin-right: auto;
+}
+
+td, th {
+  border: 1px solid #dddddd;
+  text-align: left;
+  padding: 8px;
+}
+
+tr:nth-child(even) {
+  background-color: #dddddd;
+}
+
+input[type="text"] {
+  font-size: 24px;
+}
+
+input[type="text"].is-invalid {
+  border: 4px solid red;
+}
+
+input[type="text"].valid {
+  border: 2px solid green;
+}
+
+span[id="error"].visible {
+  color: red;
+  font-size: 16px;
+  visibility: visible;
+}
+
+span[id="error"].hidden {
+  visibility: hidden;
+}
+

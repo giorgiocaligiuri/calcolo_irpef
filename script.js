@@ -13,35 +13,75 @@ const validateNumber = function (number) {
     return true;
 }
 
+const resetTable = function () {
+    const table = document.getElementById("table");
+    table.innerHTML = "";
+    const header = table.createTHead();
+    const row = header.insertRow();
+    row.insertCell().innerHTML = "scaglione";
+    row.insertCell().innerHTML = "aliquota";
+    row.insertCell().innerHTML = "imponibile_scaglione";
+    row.insertCell().innerHTML = "tassa_scaglione";
+}
+
+const insertTableRow = function (scaglione, aliquota, imponibile_scaglione, tassa_scaglione) {
+    const table = document.getElementById("table");
+    const row = table.insertRow();
+    row.insertCell().innerHTML = scaglione;
+    row.insertCell().innerHTML = aliquota;
+    row.insertCell().innerHTML = imponibile_scaglione;
+    row.insertCell().innerHTML = tassa_scaglione;
+}
+
 const calcolaNettoDaImponibile = function (imponibile) {
     const scaglioni = [ 15000, 28000, 50000];
     const aliquote = [ 23, 25, 35, 43];
     
+    resetTable();
+
     let totaleTasse = 0;
     let imponibile_rimanente = imponibile;
-    let i = 0;
-    while (imponibile_rimanente > 0) {
+    for (let i = 0; i < scaglioni.length && imponibile_rimanente > 0; i++) {
         const scaglione = scaglioni[i];
         const aliquota = aliquote[i];
         const imponibile_scaglione = Math.min(imponibile_rimanente, scaglione);
         const tassa_scaglione = imponibile_scaglione * aliquota / 100;
         totaleTasse += tassa_scaglione;
         imponibile_rimanente -= imponibile_scaglione;
-        i++;
+        //add values to table
+        insertTableRow(`${i > 0 ? scaglioni[i-1] : "0"} - ${scaglione}`, `${aliquota} %`, imponibile_scaglione, tassa_scaglione);
     }
+    // apply last aliquota
+    if (imponibile_rimanente > 0) {
+        const aliquota = aliquote[aliquote.length - 1];
+        const tassa_scaglione = imponibile_rimanente * aliquota / 100;
+        totaleTasse += tassa_scaglione;
+        //add values to table
+        insertTableRow(`${scaglioni[scaglioni.length - 1]} - `, `${aliquota} %`, imponibile_rimanente, tassa_scaglione);
+    }
+
 
     return imponibile - totaleTasse;
 }
 
-const btn_calcola_click_eventHandeler = function () {
+const txt_imponebile_textChanged_eventHandeler = function () {
     //get value from input with id "txt_imponibile"
     const input_text = document.getElementById("txt_imponibile").value;
 
     //validate input
     if (!validateNumber(input_text)) {
-        alert("Inserisci un numero");
-        return;
+      //invalid input
+      document.getElementById("txt_imponibile").classList.remove("valid");
+      document.getElementById("txt_imponibile").classList.add("is-invalid");  
+      document.getElementById("error").classList.remove("hidden");
+      document.getElementById("error").classList.add("visible");
+      return;
     }
+    //valid input
+    document.getElementById("txt_imponibile").classList.remove("is-invalid");
+    document.getElementById("txt_imponibile").classList.add("valid");  
+    document.getElementById("error").classList.remove("visible");
+    document.getElementById("error").classList.add("hidden");
 
     //convert input to number
     const imponibile = Number(input_text);
@@ -54,12 +94,11 @@ const btn_calcola_click_eventHandeler = function () {
     
 
     //show result
-    document.getElementById("stipendio_netto_no_tred").innerHTML = `stipendio netto (no tredicesiama) :${stipendio_netto_no_tred} € al meese`
+    document.getElementById("stipendio_netto_no_tred").innerHTML = `stipendio netto (no tredicesiama) : ${stipendio_netto_no_tred} € al meese`
     document.getElementById("stipendio_netto_tred").innerHTML = `stipendio netto (con tredicesima) : ${stipendio_netto_tred} € al meese`
 
 };
 
-
-//add listener to button click, button with id "btn_calcola"
-document.getElementById("btn_calcola").addEventListener("click", btn_calcola_click_eventHandeler);
+// add text changed event listener to input with id "txt_imponibile"
+document.getElementById("txt_imponibile").addEventListener("input", txt_imponebile_textChanged_eventHandeler);
 
