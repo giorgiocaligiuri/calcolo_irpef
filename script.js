@@ -69,20 +69,23 @@ const txt_imponebile_textChanged_eventHandeler = function () {
     const input_text = document.getElementById("txt_imponibile").value;
 
     if (input_text === "") {
-      //empty input
-      //hide error message
-      document.getElementById("error").classList.remove("visible");
-      document.getElementById("error").classList.add("hidden");
-      //hide table
-      document.getElementById("table").classList.remove("visible");
-      document.getElementById("table").classList.add("hidden");
-      // hide p_stipendio_netto_no_tred
-      document.getElementById("p_stipendio_netto_no_tred").classList.remove("visible");
-      document.getElementById("p_stipendio_netto_no_tred").classList.add("hidden");
-      // hide p_stipendio_netto_tred
-      document.getElementById("p_stipendio_netto_tred").classList.remove("visible");
-      document.getElementById("p_stipendio_netto_tred").classList.add("hidden");
-      return;
+        //empty input
+        //hide error message
+        document.getElementById("error").classList.remove("visible");
+        document.getElementById("error").classList.add("hidden");
+        //hide table
+        document.getElementById("table").classList.remove("visible");
+        document.getElementById("table").classList.add("hidden");
+        // hide p_stipendio_netto_no_tred
+        document.getElementById("p_stipendio_netto_no_tred").classList.remove("visible");
+        document.getElementById("p_stipendio_netto_no_tred").classList.add("hidden");
+        // hide p_stipendio_netto_tred
+        document.getElementById("p_stipendio_netto_tred").classList.remove("visible");
+        document.getElementById("p_stipendio_netto_tred").classList.add("hidden");
+        //remove valid class from txt_imponibile
+        document.getElementById("txt_imponibile").classList.remove("valid");
+        document.getElementById("txt_imponibile").classList.remove("is-invalid");
+        return;
     }
     // text not empty
     //show table
