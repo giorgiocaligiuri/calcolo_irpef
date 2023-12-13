@@ -34,30 +34,22 @@ const insertTableRow = function (scaglione, aliquota, imponibile_scaglione, tass
 }
 
 const calcolaNettoDaImponibile = function (imponibile) {
-    const scaglioni = [ 15000, 28000, 50000];
+    const soglie_scaglioni = [ 0, 15000, 28000, 50000, +Infinity];
     const aliquote = [ 23, 25, 35, 43];
     
     resetTable();
 
     let totaleTasse = 0;
     let imponibile_rimanente = imponibile;
-    for (let i = 0; i < scaglioni.length && imponibile_rimanente > 0; i++) {
-        const scaglione = scaglioni[i];
+    for (let i = 0; (i < soglie_scaglioni.length - 1) && (imponibile_rimanente > 0); i++) {
+        const scaglione = { min: soglie_scaglioni[i], max: soglie_scaglioni[i+1] };
         const aliquota = aliquote[i];
-        const imponibile_scaglione = Math.min(imponibile_rimanente, scaglione);
+        const imponibile_scaglione = Math.min(imponibile_rimanente, scaglione.max - scaglione.min);
         const tassa_scaglione = imponibile_scaglione * aliquota / 100;
         totaleTasse += tassa_scaglione;
         imponibile_rimanente -= imponibile_scaglione;
         //add values to table
-        insertTableRow(`${i > 0 ? scaglioni[i-1] : "0"} - ${scaglione}`, `${aliquota}`, imponibile_scaglione, tassa_scaglione);
-    }
-    // apply last aliquota
-    if (imponibile_rimanente > 0) {
-        const aliquota = aliquote[aliquote.length - 1];
-        const tassa_scaglione = imponibile_rimanente * aliquota / 100;
-        totaleTasse += tassa_scaglione;
-        //add values to table
-        insertTableRow(`${scaglioni[scaglioni.length - 1]} - `, `${aliquota}`, imponibile_rimanente, tassa_scaglione);
+        insertTableRow(`${scaglione.min} - ${scaglione.max === Infinity ? "" : scaglione.max}`, `${aliquota}`, imponibile_scaglione, tassa_scaglione);
     }
 
 
